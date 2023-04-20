@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.18",
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -25,7 +28,17 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0"
+    "@chakra-ui/storybook-addon": "^4.0.16",
+    "@storybook/addon-essentials": "7.0.6",
+    "@storybook/addon-interactions": "7.0.6",
+    "@storybook/addon-links": "7.0.6",
+    "@storybook/blocks": "7.0.6",
+    "@storybook/nextjs": "7.0.6",
+    "@storybook/react": "7.0.6",
+    "@storybook/testing-library": "0.0.14-next.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint-plugin-storybook": "^0.6.11",
+    "storybook": "7.0.6"
   },
   "config": {
     "commitizen": {
