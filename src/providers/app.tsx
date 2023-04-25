@@ -6,6 +6,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import { theme } from "@/config/theme";
 import { queryClient } from "@/lib/react-query";
+import { Notifications } from "@/components/notifications";
 
 type AppProviderProps = {
   children: ReactNode;
@@ -16,6 +17,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     <ChakraProvider theme={theme}>
       <ErrorBoundary fallback={<div>Something went wrong</div>} onError={console.error}>
         <GlobalStyle />
+        <Notifications />
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
           {children}
