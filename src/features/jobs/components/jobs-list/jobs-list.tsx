@@ -55,7 +55,7 @@ export const JobsList = ({ type, jobs, isLoading = false, organizationId }: Jobs
   const tableColumns = getTableColumns(organizationId, type);
 
   return (
-    <Box>
+    <Box data-testid="jobs-list">
       <DataTable columns={tableColumns} data={jobs} isLoading={isLoading} />
     </Box>
   );

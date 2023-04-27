@@ -48,7 +48,7 @@ export const DataTable = <Entry extends Entity>({
           </Thead>
           <Tbody>
             {data?.map((entry, entryIndex) => (
-              <Tr key={entry.id || entryIndex}>
+              <Tr data-testid={`table-row-${entryIndex}`} key={entry.id || entryIndex}>
                 {columns.map((column, columnIndex) => (
                   <Td key={`${entryIndex}_${columnIndex}_${column.title}`}>
                     <Text>
