@@ -4,6 +4,7 @@ import {
   screen,
   waitFor,
   within,
+  fireEvent,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -60,4 +61,4 @@ export const waitforLoadingToFinish = () => {
 };
 
 export * from '@testing-library/react';
-export { userEvent };
+export { userEvent, fireEvent };

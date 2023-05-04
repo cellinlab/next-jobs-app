@@ -1,6 +1,6 @@
 import DashboardCreateJobPage from "@/pages/dashboard/jobs/create";
 
-import { appRender, screen, userEvent, waitFor } from "@/testing/test-utils";
+import { appRender, screen, userEvent, fireEvent, waitFor } from "@/testing/test-utils";
 
 const router = {
   push: jest.fn(),
@@ -13,8 +13,8 @@ jest.mock("next/router", () => ({
 const jobData = {
   position: "Software Engineer",
   location: "London",
-  deparment: "Engineering",
-  info: "This is a test job",
+  department: "Engineering",
+  info: "Lorem Ipsum",
 };
 
 describe("Dashboard Create Job Page", () => {
@@ -37,19 +37,41 @@ describe("Dashboard Create Job Page", () => {
       name: /info/i,
     });
 
-    const submitBtn = screen.getByRole("button", {
+    const submitButton = screen.getByRole("button", {
       name: /create/i,
     });
 
-    userEvent.type(positionInput, jobData.position);
-    userEvent.type(locationInput, jobData.location);
-    userEvent.type(departmentInput, jobData.deparment);
-    userEvent.type(infoInput, jobData.info);
-
-    userEvent.click(submitBtn);
+    fireEvent.change(positionInput, {
+      target: {
+        value: jobData.position,
+      },
+    });
+    fireEvent.change(locationInput, {
+      target: {
+        value: jobData.location,
+      },
+    });
+    fireEvent.change(departmentInput, {
+      target: {
+        value: jobData.department,
+      },
+    });
+    fireEvent.change(infoInput, {
+      target: {
+        value: jobData.info,
+      },
+    });
 
     await waitFor(() => {
-      expect(screen.getByText(/successfully/i)).toBeInTheDocument();
+      // 检查输入
+      expect(positionInput).toHaveValue(jobData.position);
+      expect(departmentInput).toHaveValue(jobData.department);
+      expect(locationInput).toHaveValue(jobData.location);
+      expect(infoInput).toHaveValue(jobData.info);
+
+      userEvent.click(submitButton);
+
+      expect(router.push).toHaveBeenCalledWith("/dashboard/jobs");
     });
   });
 });
