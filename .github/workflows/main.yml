@@ -11,9 +11,10 @@ jobs:
         with:
           node-version: 16
       - run: mv .env.example .env
-      - run: npm install
-      - run: npm run test
-      - run: npm run lint
+      - run: npm install -g pnpm
+      - run: pnpm install
+      - run: pnpm run test
+      - run: pnpm run lint
   e2e:
     name: E2E Tests
     runs-on: ubuntu-latest
@@ -22,8 +23,8 @@ jobs:
       - run: mv .env.example .env
       - uses: cypress-io/github-action@v4
         with:
-          build: npm run build
-          start: npm run start
+          build: pnpm run build
+          start: pnpm run start
   deploy:
     name: Deploy To Vercel
     runs-on: ubuntu-latest
